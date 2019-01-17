@@ -24,7 +24,7 @@ export default {
   methods: {
     info () {
       const _this = this
-      this.axios.get('/api/user/info').then((res) => {
+      this.axios.get('/api/sys/user/info').then((res) => {
         if (res.data.ret) {
           _this.username = res.data.data.username
         } else {
@@ -41,6 +41,7 @@ export default {
             message: '注销成功',
             type: 'success'
           })
+          this.$store.commit('logout', false)
           this.$router.push({path: '/login'})
         } else {
           this.$message.error(res.data.msg)

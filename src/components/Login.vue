@@ -51,6 +51,7 @@ export default {
             message: '登录成功',
             type: 'success'
           })
+          this.$store.commit('login', true)
           this.$router.push({path: '/user'})
         } else {
           this.$message.error(res.data.msg)

@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import store from './stores/store'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
@@ -16,6 +17,18 @@ Vue.use(VueAxios, axios)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
+})
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next()
+  } else {
+    if (!store.state.user) {
+      next({ path: '/login' })
+    } else {
+      next()
+    }
+  }
 })
