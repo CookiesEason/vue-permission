@@ -53,7 +53,7 @@
       <h1 style="width: 100px;font-size: 16px">部门列表
         <i class="el-icon-circle-plus-outline" style="margin-left: 10px" @click="clearForm();dialogFormVisible = true"></i>
       </h1>
-      <el-tree :data="depts" :props="defaultProps" node-key="id">
+      <el-tree :data="depts" :props="defaultProps" node-key="id" @node-click="handleNodeClick">
           <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
             <span>
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import bus from '../../../assets/eventBus'
 export default {
   name: 'Dept',
   data () {
@@ -97,6 +98,7 @@ export default {
   },
   mounted () {
     this.getDepts()
+    bus.$emit('Dept', this.depts)
   },
   methods: {
     getDepts () {
@@ -173,7 +175,6 @@ export default {
     handleClick (data, parent, children) {
       if (parent) {
         this.$refs.treeForm.setCheckedNodes([data])
-        this.form.parentId = this.checkedId
       }
       this.form.parentId = this.getCheckedNodes()
       console.log(this.form.parentId)
@@ -191,6 +192,13 @@ export default {
       this.form.name = ''
       this.form.seq = ''
       this.form.remark = ''
+    },
+    handleNodeClick (data, node) {
+      this.sendData(data, node)
+    },
+    sendData (data, node) {
+      bus.$emit('DeptInfo', data)
+      bus.$emit('DeptNode', node)
     }
   }
 }
