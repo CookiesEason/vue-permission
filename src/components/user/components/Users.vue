@@ -164,7 +164,6 @@ export default {
       _this.deptNode = data
     })
     bus.$on('DeptInfo', function (data) {
-      _this.loading = true
       _this.dept = data
       _this.currentPage = 1
       _this.handleCurrentChange(1)

@@ -20,6 +20,7 @@
               <acl-modules></acl-modules>
             </el-aside>
             <el-main style="padding: 0 20px">
+              <acls></acls>
             </el-main>
           </el-container>
         </el-main>
@@ -32,12 +33,14 @@
 import HeaderComponent from '../common/Header'
 import NavComponent from '../common/Nav'
 import AclModules from './components/AclModules'
+import Acls from './components/Acls'
 export default {
   name: 'AclManage',
   components: {
     HeaderComponent,
     NavComponent,
-    AclModules
+    AclModules,
+    Acls
   }
 }
 </script>

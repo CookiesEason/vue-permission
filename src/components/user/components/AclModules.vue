@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import bus from '../../../assets/eventBus'
 export default {
   name: 'AclModules',
   data () {
@@ -202,6 +203,8 @@ export default {
       this.sendData(data, node)
     },
     sendData (data, node) {
+      bus.$emit('aclModuleNode', node)
+      bus.$emit('aclModuleInfo', data)
     }
   }
 }
