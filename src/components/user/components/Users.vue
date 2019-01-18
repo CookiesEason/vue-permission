@@ -20,9 +20,7 @@
             <el-input v-model="form.telephone" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="状态" :label-width="formLabelWidth">
-            <el-form-item>
-              <el-switch on-text="有效" off-text="失效" v-model="form.status"></el-switch>
-            </el-form-item>
+            <el-switch :active-value=1 :inactive-value=0 v-model="form.status"></el-switch>
           </el-form-item>
           <el-form-item label="备注" :label-width="formLabelWidth">
             <el-input v-model="form.remark" autocomplete="off"></el-input>
@@ -53,9 +51,7 @@
             <el-input v-model="form.telephone" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="状态" :label-width="formLabelWidth">
-            <el-form-item>
-              <el-switch on-text="有效" off-text="失效" v-model="form.status"></el-switch>
-            </el-form-item>
+            <el-switch :active-value=1 :inactive-value=0  v-model="form.status"></el-switch>
           </el-form-item>
           <el-form-item label="备注" :label-width="formLabelWidth">
             <el-input v-model="form.remark" autocomplete="off"></el-input>
@@ -67,7 +63,7 @@
         </div>
       </el-dialog>
       <h1 style="width: 100px;font-size: 16px">用户列表
-        <i class="el-icon-circle-plus-outline" style="margin-left: 10px" @click="getDepts();dialogFormVisible = true"></i>
+        <i class="el-icon-circle-plus-outline" style="margin-left: 10px" @click="getDepts();clearForm();dialogFormVisible = true"></i>
       </h1>
       <el-table
         border
@@ -202,11 +198,6 @@ export default {
     },
     addUser () {
       const _this = this
-      if (_this.form.status) {
-        _this.form.status = 1
-      } else {
-        _this.form.status = 0
-      }
       this.axios.get('/api/sys/user/save', {
         params: _this.form
       }).then((res) => {
@@ -225,11 +216,6 @@ export default {
     },
     updateUser () {
       const _this = this
-      if (_this.form.status) {
-        _this.form.status = 1
-      } else {
-        _this.form.status = 0
-      }
       this.axios.get('/api/sys/user/update', {
         params: _this.form
       }).then((res) => {
@@ -238,13 +224,9 @@ export default {
             message: '更新成功',
             type: 'success'
           })
-          if (_this.form.status) {
-            _this.form.status = true
-          } else {
-            _this.form.status = false
-          }
           _this.dialogUpdateVisible = false
           _this.list(_this.form.deptId, _this.currentPage)
+          _this.clearForm()
         } else {
           this.$message.error(res.data.msg)
         }
@@ -283,17 +265,22 @@ export default {
       this.form.telephone = row.telephone
       this.form.mail = row.mail
       this.form.remark = row.remark
-      if (row.status) {
-        this.form.status = true
-      } else {
-        this.form.status = false
-      }
+      console.log(row.status)
+      this.form.status = row.status
       console.log(index, row)
     },
     handleDelete (index, row, users) {
       console.log('删除操作暂时没实现')
       users.splice(index, 1)
       this.total = this.total - 1
+    },
+    clearForm () {
+      this.form.id = ''
+      this.form.deptId = ''
+      this.form.telephone = ''
+      this.form.mail = ''
+      this.form.status = ''
+      this.form.remark = ''
     }
   }
 }
