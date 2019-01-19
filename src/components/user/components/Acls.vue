@@ -80,7 +80,7 @@
       </div>
     </el-dialog>
     <h1 style="width: 100px;font-size: 16px">权限列表
-      <i class="el-icon-circle-plus-outline" style="margin-left: 10px" @click="clearForm;dialogFormVisible = true"></i>
+      <i class="el-icon-circle-plus-outline" style="margin-left: 10px" @click="clearForm();dialogFormVisible = true"></i>
     </h1>
     <el-table
       border

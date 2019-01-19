@@ -16,9 +16,10 @@
         <br>
         <el-container style="min-height: 600px">
           <el-aside>
-            <roles v-bind:roles="roles" v-bind:loading="loading" v-on:getRoles="getRoles"></roles>
+            <roles v-bind:roles="roles" v-bind:loading="loading" v-on:getRoles="getRoles" v-on:role="getRole"></roles>
           </el-aside>
           <el-main style="padding: 0 20px">
+            <acl-role-user v-bind:role="role"></acl-role-user>
           </el-main>
         </el-container>
       </el-main>
@@ -30,17 +31,20 @@
 import HeaderComponent from '../common/Header'
 import NavComponent from '../common/Nav'
 import Roles from './components/Roles'
+import AclRoleUser from './components/AclRoleUser'
 export default {
   name: 'RoleManage',
   components: {
     HeaderComponent,
     NavComponent,
-    Roles
+    Roles,
+    AclRoleUser
   },
   data () {
     return {
       roles: [],
-      loading: false
+      loading: false,
+      role: ''
     }
   },
   mounted () {
@@ -63,6 +67,10 @@ export default {
       }).catch((res) => {
         console.log(res)
       })
+    },
+    getRole (role) {
+      this.role = role
+      console.log('父组件拿到：' + role)
     }
   }
 }

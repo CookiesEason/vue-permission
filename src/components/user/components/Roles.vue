@@ -82,7 +82,8 @@ export default {
   props: ['roles', 'loading'],
   methods: {
     handleCurrentChange (val) {
-      console.log(val)
+      // 点击角色
+      this.$emit('role', val)
     },
     addRole () {
       const _this = this
