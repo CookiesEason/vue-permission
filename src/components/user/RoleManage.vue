@@ -70,7 +70,6 @@ export default {
     },
     getRole (role) {
       this.role = role
-      console.log('父组件拿到：' + role)
     }
   }
 }
