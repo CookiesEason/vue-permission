@@ -104,8 +104,12 @@ export default {
     getDepts () {
       const _this = this
       this.axios.get('/api/sys/dept/tree').then((res) => {
-        _this.depts = res.data.data
-        console.log(_this.depts)
+        if (res.data.ret) {
+          _this.depts = res.data.data
+          console.log(_this.depts)
+        } else {
+          this.$message.error(res.data.msg)
+        }
       }).catch((res) => {
         console.log(res)
       })

@@ -110,8 +110,12 @@ export default {
     getAclModules () {
       const _this = this
       this.axios.get('/api/sys/aclModule/tree').then((res) => {
-        _this.aclModules = res.data.data
-        console.log(_this.aclModules)
+        if (res.data.ret) {
+          _this.aclModules = res.data.data
+          console.log(_this.aclModules)
+        } else {
+          this.$message.error(res.data.msg)
+        }
       }).catch((res) => {
         console.log(res)
       })

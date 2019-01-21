@@ -16,7 +16,7 @@
         <br>
         <el-container style="min-height: 600px">
           <el-aside>
-            <roles v-bind:roles="roles" v-bind:loading="loading" v-on:getRoles="getRoles" v-on:role="getRole"></roles>
+            <roles v-bind:roles="roles" v-on:getRoles="getRoles" v-on:role="getRole"></roles>
           </el-aside>
           <el-main style="padding: 0 20px">
             <acl-role-user v-bind:role="role"></acl-role-user>
@@ -43,7 +43,6 @@ export default {
   data () {
     return {
       roles: [],
-      loading: false,
       role: ''
     }
   },
@@ -52,7 +51,6 @@ export default {
   },
   methods: {
     getRoles () {
-      this.loading = true
       const _this = this
       this.axios.get('/api/sys/role/list', {
         params: _this.form

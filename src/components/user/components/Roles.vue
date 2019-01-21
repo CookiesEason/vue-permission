@@ -79,7 +79,7 @@ export default {
       formLabelWidth: '50px'
     }
   },
-  props: ['roles', 'loading'],
+  props: ['roles'],
   methods: {
     handleCurrentChange (val) {
       // 点击角色
