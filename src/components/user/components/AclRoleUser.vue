@@ -1,7 +1,8 @@
 <template>
   <el-tabs value="first" type="card">
     <el-tab-pane label="角色与权限" name="first">
-      <acl-role v-bind:acls="acls" v-bind:roleId="role.id" v-bind:checkedNames="checkedNames"></acl-role>
+      <acl-role v-bind:acls="acls" v-bind:roleId="role.id"
+                v-bind:checkedNames="checkedNames" v-bind:checkedIds="checkedIds"></acl-role>
     </el-tab-pane>
     <el-tab-pane label="角色与用户" name="second">
       <user-role v-bind:selectedUsers="selectedUsers" v-bind:unSelectedUsers="unSelectedUsers" v-bind:roleId="role.id"></user-role>
@@ -22,6 +23,7 @@ export default {
     return {
       acls: [],
       checkedNames: [],
+      checkedIds: [],
       selectedUsers: [],
       unSelectedUsers: [],
       values: []
@@ -39,6 +41,7 @@ export default {
         if (res.data.ret) {
           console.log(res.data.data)
           _this.acls = res.data.data
+          _this.checkedIds = []
           _this.transferTree(_this.acls)
         } else {
           this.$message.error(res.data.msg)
@@ -74,6 +77,7 @@ export default {
               data[aclsKey].aclModules.push(acl)
               if (acl.checked) {
                 this.checkedNames.push(acl.name)
+                this.checkedIds.push(acl.id)
               }
             }
           }

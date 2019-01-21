@@ -24,7 +24,7 @@ export default {
   methods: {
     info () {
       const _this = this
-      this.axios.get('/api/sys/user/info').then((res) => {
+      this.axios.get('/api/user/info').then((res) => {
         if (res.data.ret) {
           _this.username = res.data.data.username
         } else {

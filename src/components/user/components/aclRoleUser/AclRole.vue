@@ -21,10 +21,11 @@
 <script>
 export default {
   name: 'AclRole',
-  props: ['acls', 'roleId', 'checkedNames'],
+  props: ['acls', 'roleId', 'checkedNames', 'checkedIds'],
   data () {
     return {
       aclIds: [],
+      flag: false,
       defaultProps: {
         children: 'aclModules',
         label: 'name'
@@ -80,6 +81,13 @@ export default {
   watch: {
     acls (data) {
       this.setChecked()
+      this.aclIds = []
+      if (!this.flag) {
+        for (let checkedIdsKey in this.checkedIds) {
+          this.aclIds.push(this.checkedIds[checkedIdsKey])
+        }
+      }
+      this.flag = true
     }
   }
 }
