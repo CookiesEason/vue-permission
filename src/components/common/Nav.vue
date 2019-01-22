@@ -21,7 +21,7 @@
             <el-menu-item index="/user" >用户管理</el-menu-item>
             <el-menu-item index="/role" >角色管理</el-menu-item>
             <el-menu-item index="/aclModule">权限管理</el-menu-item>
-            <el-menu-item index="1-4">权限更新记录</el-menu-item>
+            <el-menu-item index="/log">权限更新记录</el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
             <i class="el-icon-setting"></i>
