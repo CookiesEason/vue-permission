@@ -1,6 +1,8 @@
 # vue-permission
 
-> A Vue.js project for Permission
+> A Vue.js project for Permission。
+**配合后台springboot框架实现了的权限管理系统，包含了权限,权限拦截(重点),角色,用户，部门添加更新等等基础功能。**
+拦截：对于前端的路由拦截暂时没有去实现，只进行了后台访问接口的拦截。
 
 **> 界面**
 <img src="https://zone-1253231183.cos.ap-shanghai.myqcloud.com/github-permission/permission/%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png?q-sign-algorithm=sha1&q-ak=AKIDv51RYcfI3rFH6xlX5jeyu4Fp0zaKMOVC&q-sign-time=1548143490;1548145290&q-key-time=1548143490;1548145290&q-header-list=&q-url-param-list=&q-signature=504bec86cc9227fb6e0518fb202fbd8ce22732c4&x-cos-security-token=fcbb7ecf85cd560daf8f5731048abbec587edbe210001"/>
